@@ -4,10 +4,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>DeepaMehta 4 Thymeleaf</name>
+    <name>DeepaMehta 4 Web Activator</name>
     <groupId>de.deepamehta</groupId>
-    <artifactId>deepamehta-thymeleaf</artifactId>
-    <version>0.1</version>
+    <artifactId>deepamehta-webactivator</artifactId>
+    <version>0.2</version>
     <packaging>bundle</packaging>
 
     <parent>
@@ -57,10 +57,10 @@
                 <configuration>
                     <instructions>
                         <Bundle-Activator>
-                            de.deepamehta.plugins.thymeleaf.ThymeleafPlugin
+                            de.deepamehta.plugins.webactivator.WebActivatorPlugin
                         </Bundle-Activator>
                         <Export-Package>
-                            de.deepamehta.plugins.thymeleaf.service, org.thymeleaf, org.thymeleaf.context
+                            org.thymeleaf.context, de.deepamehta.plugins.webactivator
                         </Export-Package>
                         <Import-Package>
                             !org.cyberneko.html, !org.slf4j.impl, !org.apache.xerces.*, !com.sun.jdi.*, *
