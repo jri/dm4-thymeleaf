@@ -1,7 +1,6 @@
 package de.deepamehta.plugins.webactivator;
 
 import de.deepamehta.core.osgi.PluginActivator;
-import de.deepamehta.core.service.event.InitializePluginListener;
 
 import com.sun.jersey.api.view.Viewable;
 
