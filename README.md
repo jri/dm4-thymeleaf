@@ -16,6 +16,10 @@ DeepaMehta 4 is a platform for collaboration and knowledge management.
 Version History
 ---------------
 
+**v0.3** -- Dec 24, 2012
+
+* Compatible with DeepaMehta 4.0.13
+
 **v0.2** -- Nov 17, 2012
 
 * Hides Thymeleaf from the webapp developer. Uses Jersey's Viewable abstraction instead.
@@ -31,4 +35,4 @@ Version History
 
 ------------
 Jörg Richter  
-Nov 17, 2012
+Dec 24, 2012
