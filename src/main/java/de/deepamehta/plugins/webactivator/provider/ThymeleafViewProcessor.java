@@ -24,7 +24,7 @@ public class ThymeleafViewProcessor implements ViewProcessor<String> {
 
     // ---------------------------------------------------------------------------------------------- Instance Variables
 
-    private Logger logger = Logger.getLogger(getClass().getName());
+    private Logger logger = Logger.getLogger(ThymeleafViewProcessor.class.getName());
 
     // -------------------------------------------------------------------------------------------------- Public Methods
 
@@ -35,6 +35,7 @@ public class ThymeleafViewProcessor implements ViewProcessor<String> {
 
     @Override
     public void writeTo(String templateName, Viewable viewable, OutputStream out) throws IOException {
+        logger.info("process " + templateName);
         //
         Context context = (Context) viewable.getModel();
         TemplateEngine templateEngine = (TemplateEngine) context.getVariables().get("_templateEngine");
