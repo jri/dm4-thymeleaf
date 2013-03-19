@@ -16,6 +16,11 @@ DeepaMehta 4 is a platform for collaboration and knowledge management.
 Version History
 ---------------
 
+**v0.3.1** -- Mar 19, 2013
+
+* Updated Thymeleaf 2.0.14 -> 2.0.16
+* Compatible with DeepaMehta 4.1
+
 **v0.3** -- Dec 24, 2012
 
 * Compatible with DeepaMehta 4.0.13
@@ -35,4 +40,4 @@ Version History
 
 ------------
 Jörg Richter  
-Dec 24, 2012
+Mar 19, 2012
