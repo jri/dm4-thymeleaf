@@ -35,6 +35,7 @@ public class ThymeleafViewProcessor implements ViewProcessor<String> {
 
     @Override
     public void writeTo(String templateName, Viewable viewable, OutputStream out) throws IOException {
+        logger.info("Processing template \"" + templateName + "\"");
         //
         Context context = (Context) viewable.getModel();
         TemplateEngine templateEngine = (TemplateEngine) context.getVariables().get("_templateEngine");
