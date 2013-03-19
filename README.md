@@ -19,6 +19,7 @@ Version History
 **v0.3.1** -- Mar 19, 2013
 
 * Updated Thymeleaf 2.0.14 -> 2.0.16
+* Uses deepamehta-plugin-parent as the parent POM.
 * Compatible with DeepaMehta 4.1
 
 **v0.3** -- Dec 24, 2012
