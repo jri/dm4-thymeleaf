@@ -9,14 +9,19 @@ import com.sun.jersey.spi.container.ContainerRequest;
 
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.TemplateProcessingParameters;
-import org.thymeleaf.context.Context;
+import org.thymeleaf.context.AbstractContext;
+import org.thymeleaf.context.WebContext;
 import org.thymeleaf.resourceresolver.IResourceResolver;
 import org.thymeleaf.templateresolver.TemplateResolver;
 
 import org.osgi.framework.Bundle;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import javax.ws.rs.Path;
+import javax.ws.rs.core.Context;
 
 import java.io.InputStream;
 import java.util.logging.Logger;
@@ -36,8 +41,9 @@ public class WebActivatorPlugin extends PluginActivator implements PreProcessReq
 
     private TemplateEngine templateEngine;
 
-    @javax.ws.rs.core.Context
-    private HttpServletRequest request;
+    @Context private HttpServletRequest request;
+    @Context private HttpServletResponse response;
+    @Context private ServletContext servletContext;
 
     private Logger logger = Logger.getLogger(getClass().getName());
 
@@ -58,7 +64,7 @@ public class WebActivatorPlugin extends PluginActivator implements PreProcessReq
         // spots (setViewModel() and view()) we could not inject a ContainerRequest but only a javax.ws.rs.core.Request
         // and Request does not provide a getProperties() method. And we neither can cast a Request into a
         // ContainerRequest as the injected Request is actually a proxy object (in order to deal with multi-threading).
-        request.setAttribute(ATTR_CONTEXT, new Context());
+        request.setAttribute(ATTR_CONTEXT, new WebContext(request, response, servletContext));
     }
 
 
@@ -68,8 +74,9 @@ public class WebActivatorPlugin extends PluginActivator implements PreProcessReq
     public TemplateEngine getTemplateEngine() {
         if (templateEngine == null) {
             throw new RuntimeException("The template engine for " + this + " is not initialized. " +
-                "Don't forget calling initTemplateEngine() from the plugin's init() hook.");
+                "Don't forget calling initTemplateEngine() from your plugin's init() hook.");
         }
+        //
         return templateEngine;
     }
 
@@ -85,7 +92,7 @@ public class WebActivatorPlugin extends PluginActivator implements PreProcessReq
         templateEngine.setTemplateResolver(templateResolver);
     }
 
-    protected void setViewModel(String name, Object value) {
+    protected void viewData(String name, Object value) {
         context().setVariable(name, value);
     }
 
@@ -95,8 +102,8 @@ public class WebActivatorPlugin extends PluginActivator implements PreProcessReq
 
     // ------------------------------------------------------------------------------------------------- Private Methods
 
-    private Context context() {
-        return (Context) request.getAttribute(ATTR_CONTEXT);
+    private AbstractContext context() {
+        return (AbstractContext) request.getAttribute(ATTR_CONTEXT);
     }
 
     // --------------------------------------------------------------------------------------------------- Inner Classes
