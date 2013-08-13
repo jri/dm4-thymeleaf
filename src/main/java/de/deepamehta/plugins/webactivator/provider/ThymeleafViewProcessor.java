@@ -58,10 +58,12 @@ public class ThymeleafViewProcessor implements ViewProcessor<String> {
     private WebActivatorPlugin matchedPlugin() {
         List<Object> resources = uriInfo.getMatchedResources();
         //
-        if (resources.size() != 1) {
+        // Note: sub-resource methods match 2 times. Both with the same resource object.
+        // ### TODO: support sub-resource locators
+        /* if (resources.size() != 1) {
             throw new RuntimeException("Request path \"" + uriInfo.getPath() + "\" matches " + resources.size() +
-                " resource objects (expected is 1)");
-        }
+                " resource objects " + resources);
+        } */
         //
         return (WebActivatorPlugin) resources.get(0);
     }
