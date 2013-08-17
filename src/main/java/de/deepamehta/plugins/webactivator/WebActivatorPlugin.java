@@ -1,10 +1,10 @@
 package de.deepamehta.plugins.webactivator;
 
 import de.deepamehta.core.osgi.PluginActivator;
-import de.deepamehta.core.service.event.PreProcessRequestListener;
+import de.deepamehta.core.service.event.ServiceRequestFilterListener;
 
 import com.sun.jersey.api.view.Viewable;
-// ### TODO: remove Jersey dependency. Move to JAX-RS 2.0.
+// ### TODO: hide Jersey internals. Move to JAX-RS 2.0.
 import com.sun.jersey.spi.container.ContainerRequest;
 
 import org.thymeleaf.TemplateEngine;
@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 // Note: although no REST service is provided the plugin is annotated as a root resource class.
 // Otherwise we can't receive JAX-RS context injections (HttpServletRequest).
 @Path("/webactivator")
-public class WebActivatorPlugin extends PluginActivator implements PreProcessRequestListener {
+public class WebActivatorPlugin extends PluginActivator implements ServiceRequestFilterListener {
 
     // ------------------------------------------------------------------------------------------------------- Constants
 
@@ -58,7 +58,7 @@ public class WebActivatorPlugin extends PluginActivator implements PreProcessReq
 
 
     @Override
-    public void preProcessRequest(ContainerRequest req) {
+    public void serviceRequestFilter(ContainerRequest containerRequest) {
         // Note: we don't operate on the passed ContainerRequest but on the injected HttpServletRequest.
         // At this spot we could use req.getProperties().put(..) instead of request.setAttribute(..) but at the other
         // spots (setViewModel() and view()) we could not inject a ContainerRequest but only a javax.ws.rs.core.Request
