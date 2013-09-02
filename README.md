@@ -2,38 +2,47 @@
 DeepaMehta 4 Web Activator
 ==========================
 
-A DeepaMehta 4 plugin that provides the basis for the development of web applications with DeepaMehta 4.  
-*DeepaMehta 4 Web Activator* provides server-side HTML generation based on the Thymeleaf template engine.  
-<http://www.thymeleaf.org>
+A DeepaMehta 4 plugin for server-side HTML generation based on the Thymeleaf template engine.
 
-Very simple example application:  
+Very simple DeepaMehta example application:  
 <https://github.com/jri/dm4-example-webapp>
 
 DeepaMehta 4 is a platform for collaboration and knowledge management.  
 <https://github.com/jri/deepamehta>
 
+Thymeleaf template engine:  
+<http://www.thymeleaf.org/>
+
 
 Version History
 ---------------
 
-**v0.3.1** -- Mar 19, 2013
+**0.4** -- Sep 2, 2013
+
+* Access session attributes from within template.
+* Concurrent requests to the same web application.
+* Deployment of more than one web application at the same time.
+* Updated Thymeleaf 2.0.16 -> 2.0.18
+* Compatible with DeepaMehta 4.1.1
+
+**0.3.1** -- Mar 19, 2013
 
 * Updated Thymeleaf 2.0.14 -> 2.0.16
 * Uses deepamehta-plugin-parent as the parent POM.
 * Compatible with DeepaMehta 4.1
 
-**v0.3** -- Dec 24, 2012
+**0.3** -- Dec 24, 2012
 
 * Compatible with DeepaMehta 4.0.13
 
-**v0.2** -- Nov 17, 2012
+**0.2** -- Nov 17, 2012
 
 * Hides Thymeleaf from the webapp developer. Uses Jersey's Viewable abstraction instead.
 * The WebActivatorPlugin base class replaces the ThymeleafService.
-* The project is renamed to "DeepaMehta 4 Web Activator" (formerly "DeepaMehta 4 Thymeleaf").
+* Project is renamed to "DeepaMehta 4 Web Activator" (formerly "DeepaMehta 4 Thymeleaf").
 * Compatible with DeepaMehta 4.0.13-SNAPSHOT (branch "master" or "neo4j-1.8")
 
-**v0.1** -- Nov 16, 2012
+**0.1** -- Nov 16, 2012
 
 * Provides ThymeleafService
 * Compatible with DeepaMehta 4.0.13-SNAPSHOT (branch "master" or "neo4j-1.8")
@@ -41,4 +50,4 @@ Version History
 
 ------------
 Jörg Richter  
-Mar 19, 2012
+Sep 2, 2012
