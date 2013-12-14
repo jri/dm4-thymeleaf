@@ -17,6 +17,10 @@ Thymeleaf template engine:
 Version History
 ---------------
 
+**0.4.1** -- Dec 14, 2013
+
+* Compatible with DeepaMehta 4.1.3
+
 **0.4** -- Sep 2, 2013
 
 * Access session attributes from within template.
@@ -50,4 +54,4 @@ Version History
 
 ------------
 Jörg Richter  
-Sep 2, 2012
+Dec 14, 2012
