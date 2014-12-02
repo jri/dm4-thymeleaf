@@ -39,12 +39,6 @@
             <version>3.16.1-GA</version>
             <scope>runtime</scope>
         </dependency>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-            <version>1.6.1</version>
-            <scope>runtime</scope>
-        </dependency>
     </dependencies>
 
     <build>
@@ -59,10 +53,10 @@
                             de.deepamehta.plugins.webactivator.WebActivatorPlugin
                         </Bundle-Activator>
                         <Import-Package>
-                            !org.cyberneko.html, !org.slf4j.impl, !org.apache.xerces.*, !com.sun.jdi.*, *
+                            !org.cyberneko.html, !org.apache.xerces.*, !com.sun.jdi.*, *
                         </Import-Package>
                         <Embed-Dependency>
-                            thymeleaf, ognl, javassist, slf4j-api
+                            thymeleaf, ognl, javassist
                         </Embed-Dependency>
                     </instructions>
                 </configuration>
