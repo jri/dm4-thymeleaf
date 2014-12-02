@@ -17,6 +17,10 @@ Thymeleaf template engine:
 Version History
 ---------------
 
+**0.4.4** -- Dec 2, 2014
+
+* Compatible with DeepaMehta 4.4
+
 **0.4.3** -- Jun 8, 2014
 
 * Compatible with DeepaMehta 4.3
@@ -62,4 +66,4 @@ Version History
 
 ------------
 Jörg Richter  
-Jun 8, 2014
+Dec 2, 2014
