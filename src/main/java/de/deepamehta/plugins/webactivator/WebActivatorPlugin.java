@@ -59,11 +59,11 @@ public class WebActivatorPlugin extends PluginActivator implements ServiceReques
 
     @Override
     public void serviceRequestFilter(ContainerRequest containerRequest) {
-        // Note: we don't operate on the passed ContainerRequest but on the injected HttpServletRequest.
-        // At this spot we could use req.getProperties().put(..) instead of request.setAttribute(..) but at the other
-        // spots (setViewModel() and view()) we could not inject a ContainerRequest but only a javax.ws.rs.core.Request
-        // and Request does not provide a getProperties() method. And we neither can cast a Request into a
-        // ContainerRequest as the injected Request is actually a proxy object (in order to deal with multi-threading).
+        // Note: we don't operate on the passed ContainerRequest but on the injected HttpServletRequest. At this spot we
+        // could use containerRequest.getProperties().put(..) instead of request.setAttribute(..) but at the other spots
+        // (viewData() and view()) we could not inject a ContainerRequest but only a javax.ws.rs.core.Request and
+        // Request does not provide a getProperties() method. And we neither can cast a Request into a ContainerRequest
+        // as the injected Request is actually a proxy object (in order to deal with multi-threading).
         request.setAttribute(ATTR_CONTEXT, new WebContext(request, response, servletContext));
     }
 
