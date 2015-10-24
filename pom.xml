@@ -6,21 +6,17 @@
 
     <name>DeepaMehta 4 Web Activator</name>
     <groupId>de.deepamehta</groupId>
-    <artifactId>dm46-webactivator</artifactId>
-    <version>0.4.5</version>
+    <artifactId>dm47-webactivator</artifactId>
+    <version>0.4.6</version>
     <packaging>bundle</packaging>
 
     <parent>
         <groupId>de.deepamehta</groupId>
         <artifactId>deepamehta-plugin-parent</artifactId>
-        <version>4.6.1</version>
+        <version>4.7</version>
     </parent>
 
     <dependencies>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-        </dependency>
         <!-- Thymeleaf -->
         <dependency>
             <groupId>org.thymeleaf</groupId>

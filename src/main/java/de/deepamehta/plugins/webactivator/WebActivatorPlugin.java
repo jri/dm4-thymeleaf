@@ -106,7 +106,7 @@ public class WebActivatorPlugin extends PluginActivator implements ServiceReques
         return (AbstractContext) request.getAttribute(ATTR_CONTEXT);
     }
 
-    // --------------------------------------------------------------------------------------------------- Inner Classes
+    // -------------------------------------------------------------------------------------------------- Nested Classes
 
     private class BundleResourceResolver implements IResourceResolver {
 
