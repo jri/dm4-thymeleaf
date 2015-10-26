@@ -17,8 +17,13 @@ Thymeleaf template engine:
 Version History
 ---------------
 
+**0.4.5** -- Aug 19, 2015
+
+* Compatible with DeepaMehta 4.6
+
 **0.4.4** -- Dec 2, 2014
 
+* Fix: Thymeleaf logging via SLF4J works.
 * Compatible with DeepaMehta 4.4
 
 **0.4.3** -- Jun 8, 2014
@@ -66,4 +71,4 @@ Version History
 
 ------------
 Jörg Richter  
-Dec 2, 2014
+Aug 19, 2015
