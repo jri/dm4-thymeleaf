@@ -1,4 +1,4 @@
-package de.deepamehta.plugins.webactivator;
+package de.deepamehta.thymeleaf;
 
 import de.deepamehta.core.osgi.PluginActivator;
 import de.deepamehta.core.service.event.ServiceRequestFilterListener;
@@ -30,12 +30,12 @@ import java.util.logging.Logger;
 
 // Note: although no REST service is provided the plugin is annotated as a root resource class.
 // Otherwise we can't receive JAX-RS context injections (HttpServletRequest).
-@Path("/webactivator")
-public class WebActivatorPlugin extends PluginActivator implements ServiceRequestFilterListener {
+@Path("/thymeleaf")
+public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFilterListener {
 
     // ------------------------------------------------------------------------------------------------------- Constants
 
-    private static String ATTR_CONTEXT = "de.deepamehta.plugins.webactivator.Context";
+    private static String ATTR_CONTEXT = "de.deepamehta.thymeleaf.Context";
 
     // ---------------------------------------------------------------------------------------------- Instance Variables
 

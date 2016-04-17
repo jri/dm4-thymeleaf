@@ -1,11 +1,11 @@
 
-DeepaMehta 4 Web Activator
-==========================
+DeepaMehta 4 Thymeleaf
+======================
 
 A DeepaMehta 4 plugin for server-side HTML generation based on the Thymeleaf template engine.
 
-Very simple DeepaMehta example application:  
-<https://github.com/jri/dm4-example-webapp>
+Very simple demo application:  
+<https://github.com/jri/dm4-thymeleaf-demo>
 
 DeepaMehta 4 is a platform for collaboration and knowledge management.  
 <https://github.com/jri/deepamehta>
