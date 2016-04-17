@@ -7,7 +7,7 @@
     <name>DeepaMehta 4 Thymeleaf</name>
     <groupId>de.deepamehta</groupId>
     <artifactId>dm48-thymeleaf</artifactId>
-    <version>0.5-SNAPSHOT</version>
+    <version>0.5</version>
     <packaging>bundle</packaging>
 
     <parent>
