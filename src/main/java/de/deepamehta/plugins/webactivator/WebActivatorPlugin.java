@@ -86,7 +86,7 @@ public class WebActivatorPlugin extends PluginActivator implements ServiceReques
 
     protected void initTemplateEngine() {
         TemplateResolver templateResolver = new TemplateResolver();
-        templateResolver.setResourceResolver(new BundleResourceResolver(bundle));
+        templateResolver.setResourceResolver(new BundleResourcesResolver(bundle));
         //
         templateEngine = new TemplateEngine();
         templateEngine.setTemplateResolver(templateResolver);
@@ -108,17 +108,17 @@ public class WebActivatorPlugin extends PluginActivator implements ServiceReques
 
     // -------------------------------------------------------------------------------------------------- Nested Classes
 
-    private class BundleResourceResolver implements IResourceResolver {
+    private class BundleResourcesResolver implements IResourceResolver {
 
         private Bundle bundle;
 
-        private BundleResourceResolver(Bundle bundle) {
+        private BundleResourcesResolver(Bundle bundle) {
             this.bundle = bundle;
         }
 
         @Override
         public String getName() {
-            return "BundleResourceResolver";
+            return "BundleResourcesResolver";
         }
 
         @Override
