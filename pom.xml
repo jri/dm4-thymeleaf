@@ -4,16 +4,16 @@
 
     <modelVersion>4.0.0</modelVersion>
 
-    <name>DeepaMehta 4 Web Activator</name>
+    <name>DeepaMehta 4 Thymeleaf</name>
     <groupId>de.deepamehta</groupId>
-    <artifactId>dm47-webactivator</artifactId>
-    <version>0.4.6</version>
+    <artifactId>dm48-thymeleaf</artifactId>
+    <version>0.5</version>
     <packaging>bundle</packaging>
 
     <parent>
         <groupId>de.deepamehta</groupId>
-        <artifactId>deepamehta-plugin-parent</artifactId>
-        <version>4.7</version>
+        <artifactId>deepamehta-plugin</artifactId>
+        <version>4.8</version>
     </parent>
 
     <dependencies>
@@ -44,9 +44,10 @@
                 <artifactId>maven-bundle-plugin</artifactId>
                 <configuration>
                     <instructions>
+                        <!-- Note: the symbolic name is legacy but must not be changed -->
                         <Bundle-SymbolicName>de.deepamehta.webactivator</Bundle-SymbolicName>
                         <Bundle-Activator>
-                            de.deepamehta.plugins.webactivator.WebActivatorPlugin
+                            de.deepamehta.thymeleaf.ThymeleafPlugin
                         </Bundle-Activator>
                         <Import-Package>
                             !org.cyberneko.html, !org.apache.xerces.*, !com.sun.jdi.*, *

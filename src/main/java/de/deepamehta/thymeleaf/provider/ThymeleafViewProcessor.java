@@ -1,6 +1,6 @@
-package de.deepamehta.plugins.webactivator.provider;
+package de.deepamehta.thymeleaf.provider;
 
-import de.deepamehta.plugins.webactivator.WebActivatorPlugin;
+import de.deepamehta.thymeleaf.ThymeleafPlugin;
 import de.deepamehta.core.util.JavaUtils;
 
 import com.sun.jersey.api.view.Viewable;
@@ -45,7 +45,7 @@ public class ThymeleafViewProcessor implements ViewProcessor<String> {
 
     @Override
     public void writeTo(String templateName, Viewable viewable, OutputStream out) throws IOException {
-        WebActivatorPlugin plugin = matchedPlugin();
+        ThymeleafPlugin plugin = matchedPlugin();
         logger.info("Processing template \"" + templateName + "\" of " + plugin);
         processTemplate(plugin.getTemplateEngine(), templateName, (IContext) viewable.getModel(), out);
     }
@@ -55,7 +55,7 @@ public class ThymeleafViewProcessor implements ViewProcessor<String> {
     /**
      * Returns the plugin that matches the current request.
      */
-    private WebActivatorPlugin matchedPlugin() {
+    private ThymeleafPlugin matchedPlugin() {
         List<Object> resources = uriInfo.getMatchedResources();
         //
         // Note: sub-resource methods match 2 times. Both with the same resource object.
@@ -65,7 +65,7 @@ public class ThymeleafViewProcessor implements ViewProcessor<String> {
                 " resource objects " + resources);
         } */
         //
-        return (WebActivatorPlugin) resources.get(0);
+        return (ThymeleafPlugin) resources.get(0);
     }
 
     private void processTemplate(TemplateEngine templateEngine, String templateName, IContext context, OutputStream out)
