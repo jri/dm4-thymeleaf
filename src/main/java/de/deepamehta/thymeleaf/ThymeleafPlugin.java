@@ -105,11 +105,11 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
         // ### Apply template file name pattern conventions under "/views" if you want to optimize performance
         // Hint: http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html#template-resolvers
         if (additionalTemplateResourceBundles.size() > 0) {
-            logger.info("Initializing thymeleaf Template engine with additional template resolver bundles...");
+            logger.info("Initializing Thymeleaf TemplateEngine with additional template resolver bundles...");
             int order = 2;
             for (Bundle otherTemplateResourceBundle : additionalTemplateResourceBundles) {
                 TemplateResolver otherTemplateResolver = new TemplateResolver();
-                logger.info("Added template resolver for bundle \"" + otherTemplateResourceBundle.getSymbolicName() + "\"");
+                logger.info("Added template resolver bundle \"" + otherTemplateResourceBundle.getSymbolicName() + "\"");
                 otherTemplateResolver.setResourceResolver(new BundleResourcesResolver(otherTemplateResourceBundle));
                 otherTemplateResolver.setOrder(order);
                 templateEngine.addTemplateResolver(otherTemplateResolver);
@@ -119,7 +119,7 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
             // to not "stand in the way" of valid template file names but fallback to e.g. "404.html", or "page.html".
             webpagesTemplateResolver.setOrder(order+1);
         } else {
-            logger.info("Initializing thymeleaf Template engine just with our standard webpages template resolver bundle...");
+            logger.info("Initializing Thymeleaf TemplateEngine without any additional template resolver bundles...");
         }
     }
 
