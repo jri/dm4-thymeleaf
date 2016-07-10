@@ -102,8 +102,6 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
         templateEngine = new TemplateEngine();
         templateEngine.addTemplateResolver(webpagesTemplateResolver);
         // If configured set Additional BundleResourceResolver and give them priority in template resolution
-        // ### Apply template file name pattern conventions under "/views" if you want to optimize performance
-        // Hint: http://www.thymeleaf.org/doc/tutorials/2.1/usingthymeleaf.html#template-resolvers
         if (additionalTemplateResourceBundles.size() > 0) {
             logger.info("Initializing Thymeleaf TemplateEngine with additional template resolver bundles...");
             int order = 2;

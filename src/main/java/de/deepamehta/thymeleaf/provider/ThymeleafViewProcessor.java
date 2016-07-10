@@ -46,7 +46,7 @@ public class ThymeleafViewProcessor implements ViewProcessor<String> {
     @Override
     public void writeTo(String templateName, Viewable viewable, OutputStream out) throws IOException {
         ThymeleafPlugin plugin = matchedPlugin();
-        logger.info("Processing template \"" + templateName + "\" of " + plugin);
+        logger.info("Processing template \"" + templateName + "\" with TemplateEngine of " + plugin);
         processTemplate(plugin.getTemplateEngine(), templateName, (IContext) viewable.getModel(), out);
     }
 
