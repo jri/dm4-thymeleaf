@@ -40,7 +40,7 @@ public class ThymeleafViewProcessor implements ViewProcessor<String> {
         // Note: By default the Viewable constructor resolves relative template names (as returned by the
         // webapp's resource methods) against the package path of the request's matching resource object.
         // JavaUtils.getFilename() strips that path.
-        return "/views/" + JavaUtils.getFilename(templateName) + ".html";
+        return JavaUtils.getFilename(templateName);
     }
 
     @Override

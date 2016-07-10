@@ -38,6 +38,8 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
     // ------------------------------------------------------------------------------------------------------- Constants
 
     private static String ATTR_CONTEXT = "de.deepamehta.thymeleaf.Context";
+    private static String TEMPLATES_FOLDER = "/views/";
+    private static String TEMPLATES_ENDING = ".html";
 
     // ---------------------------------------------------------------------------------------------- Instance Variables
 
@@ -99,6 +101,8 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
         TemplateResolver webpagesTemplateResolver = new TemplateResolver();
         webpagesTemplateResolver.setResourceResolver(new BundleResourcesResolver(bundle));
         webpagesTemplateResolver.setOrder(1);
+        webpagesTemplateResolver.setPrefix(TEMPLATES_FOLDER);
+        webpagesTemplateResolver.setSuffix(TEMPLATES_ENDING);
         templateEngine = new TemplateEngine();
         templateEngine.addTemplateResolver(webpagesTemplateResolver);
         // If configured set Additional BundleResourceResolver and give them priority in template resolution
@@ -110,6 +114,8 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
                 logger.info("Added template resolver bundle \"" + otherTemplateResourceBundle.getSymbolicName() + "\"");
                 otherTemplateResolver.setResourceResolver(new BundleResourcesResolver(otherTemplateResourceBundle));
                 otherTemplateResolver.setOrder(order);
+                otherTemplateResolver.setPrefix(TEMPLATES_FOLDER);
+                otherTemplateResolver.setSuffix(TEMPLATES_ENDING);
                 templateEngine.addTemplateResolver(otherTemplateResolver);
                 order++;
             }
