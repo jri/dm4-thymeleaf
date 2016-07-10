@@ -17,6 +17,12 @@ Thymeleaf template engine:
 Version History
 ---------------
 
+**0.6** -- Upcoming
+
+* Support for setting up many BundleResourceResolvers
+* Resolve included th:fragments by their template name only
+* Minor thymeleaf version update: 2.0.18 > 2.0.21
+
 **0.5** -- Apr 17, 2016
 
 * Renamed from "DM4 Web Activator" to "DM4 Thymeleaf".
