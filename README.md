@@ -21,7 +21,7 @@ Version History
 
 * Support for setting up many BundleResourceResolvers
 * Resolve included th:fragments by their template name only
-* Minor thymeleaf version update: 2.0.18 > 2.0.21
+* Thymeleaf Upgrade: 2.0.18 > 2.1.3
 
 **0.5** -- Apr 17, 2016
 
