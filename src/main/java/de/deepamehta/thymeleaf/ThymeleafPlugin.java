@@ -24,6 +24,8 @@ import javax.ws.rs.Path;
 import javax.ws.rs.core.Context;
 
 import java.io.InputStream;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.logging.Logger;
 
 
@@ -40,6 +42,8 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
     // ---------------------------------------------------------------------------------------------- Instance Variables
 
     private TemplateEngine templateEngine;
+    Set<Bundle> additionalTemplateResourceBundles = new HashSet<Bundle>();
+
 
     @Context private HttpServletRequest request;
     @Context private HttpServletResponse response;
@@ -80,16 +84,41 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
         return templateEngine;
     }
 
-
-
     // ----------------------------------------------------------------------------------------------- Protected Methods
 
+    protected void addTemplateResourceBundle(Bundle templateBundleResource) {
+        additionalTemplateResourceBundles.add(templateBundleResource);
+    }
+
+    protected void removeTemplateResourceBundle(Bundle templateBundleResource) {
+        additionalTemplateResourceBundles.remove(templateBundleResource);
+    }
+
     protected void initTemplateEngine() {
-        TemplateResolver templateResolver = new TemplateResolver();
-        templateResolver.setResourceResolver(new BundleResourcesResolver(bundle));
-        //
+        // Initialize this plugin bundle (extending ThymeLeafPlugin) as the default BundleResourceResolver
+        TemplateResolver webpagesTemplateResolver = new TemplateResolver();
+        webpagesTemplateResolver.setResourceResolver(new BundleResourcesResolver(bundle));
+        webpagesTemplateResolver.setOrder(1);
         templateEngine = new TemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver);
+        templateEngine.addTemplateResolver(webpagesTemplateResolver);
+        // If configured set Additional BundleResourceResolver and give them priority in template resolution
+        if (additionalTemplateResourceBundles.size() > 0) {
+            logger.info("Initializing Thymeleaf TemplateEngine with additional template resolver bundles...");
+            int order = 2;
+            for (Bundle otherTemplateResourceBundle : additionalTemplateResourceBundles) {
+                TemplateResolver otherTemplateResolver = new TemplateResolver();
+                logger.info("Added template resolver bundle \"" + otherTemplateResourceBundle.getSymbolicName() + "\"");
+                otherTemplateResolver.setResourceResolver(new BundleResourcesResolver(otherTemplateResourceBundle));
+                otherTemplateResolver.setOrder(order);
+                templateEngine.addTemplateResolver(otherTemplateResolver);
+                order++;
+            }
+            // if other bundles are present we override our "order" to being the template resovler with lowest priority
+            // to not "stand in the way" of valid template file names but fallback to e.g. "404.html", or "page.html".
+            webpagesTemplateResolver.setOrder(order+1);
+        } else {
+            logger.info("Initializing Thymeleaf TemplateEngine without any additional template resolver bundles...");
+        }
     }
 
     protected void viewData(String name, Object value) {
