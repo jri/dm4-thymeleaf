@@ -97,26 +97,22 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
     }
 
     protected void initTemplateEngine() {
-        // Initialize this plugin bundle (extending ThymeLeafPlugin) as the default BundleResourceResolver
-        TemplateResolver webpagesTemplateResolver = createBundleResourcesResolver(bundle, 1);
-        templateEngine = new TemplateEngine();
-        templateEngine.addTemplateResolver(webpagesTemplateResolver);
         // If configured set Additional BundleResourceResolver and give them priority in template resolution
+        templateEngine = new TemplateEngine();
+        int order = 1;
         if (additionalTemplateResourceBundles.size() > 0) {
             logger.info("Initializing Thymeleaf TemplateEngine with additional template resolver bundles...");
-            int order = 2;
             for (Bundle otherTemplateResourceBundle : additionalTemplateResourceBundles) {
                 TemplateResolver otherTemplateResolver = createBundleResourcesResolver(otherTemplateResourceBundle, order);
-                logger.info("Added template resolver bundle \"" + otherTemplateResourceBundle.getSymbolicName() + "\"");
                 templateEngine.addTemplateResolver(otherTemplateResolver);
+                logger.info("Added template resolver bundle \"" + otherTemplateResourceBundle.getSymbolicName() + "\"");
                 order++;
             }
-            // if other bundle resolvers are present we override our order, giving the standard resolver lowest priority
-            // this is to to not "stand in the way" of valid template file names but fallback to e.g. the "404.html"
-            webpagesTemplateResolver.setOrder(order+1);
         } else {
             logger.info("Initializing Thymeleaf TemplateEngine without any additional template resolver bundles...");
         }
+        // Initialize this plugin bundle (extending ThymeLeafPlugin) as a BundleResourceResolver too
+        templateEngine.addTemplateResolver(createBundleResourcesResolver(bundle, order));
     }
 
     protected void viewData(String name, Object value) {
