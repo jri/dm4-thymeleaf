@@ -98,11 +98,7 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
 
     protected void initTemplateEngine() {
         // Initialize this plugin bundle (extending ThymeLeafPlugin) as the default BundleResourceResolver
-        TemplateResolver webpagesTemplateResolver = new TemplateResolver();
-        webpagesTemplateResolver.setResourceResolver(new BundleResourcesResolver(bundle));
-        webpagesTemplateResolver.setOrder(1);
-        webpagesTemplateResolver.setPrefix(TEMPLATES_FOLDER);
-        webpagesTemplateResolver.setSuffix(TEMPLATES_ENDING);
+        TemplateResolver webpagesTemplateResolver = createBundleResourcesResolver(bundle, 1);
         templateEngine = new TemplateEngine();
         templateEngine.addTemplateResolver(webpagesTemplateResolver);
         // If configured set Additional BundleResourceResolver and give them priority in template resolution
@@ -110,17 +106,13 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
             logger.info("Initializing Thymeleaf TemplateEngine with additional template resolver bundles...");
             int order = 2;
             for (Bundle otherTemplateResourceBundle : additionalTemplateResourceBundles) {
-                TemplateResolver otherTemplateResolver = new TemplateResolver();
+                TemplateResolver otherTemplateResolver = createBundleResourcesResolver(otherTemplateResourceBundle, order);
                 logger.info("Added template resolver bundle \"" + otherTemplateResourceBundle.getSymbolicName() + "\"");
-                otherTemplateResolver.setResourceResolver(new BundleResourcesResolver(otherTemplateResourceBundle));
-                otherTemplateResolver.setOrder(order);
-                otherTemplateResolver.setPrefix(TEMPLATES_FOLDER);
-                otherTemplateResolver.setSuffix(TEMPLATES_ENDING);
                 templateEngine.addTemplateResolver(otherTemplateResolver);
                 order++;
             }
-            // if other bundles are present we override our "order" to being the template resovler with lowest priority
-            // to not "stand in the way" of valid template file names but fallback to e.g. "404.html", or "page.html".
+            // if other bundle resolvers are present we override our order, giving the standard resolver lowest priority
+            // this is to to not "stand in the way" of valid template file names but fallback to e.g. the "404.html"
             webpagesTemplateResolver.setOrder(order+1);
         } else {
             logger.info("Initializing Thymeleaf TemplateEngine without any additional template resolver bundles...");
@@ -136,6 +128,15 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
     }
 
     // ------------------------------------------------------------------------------------------------- Private Methods
+
+    private TemplateResolver createBundleResourcesResolver(Bundle bundle, int order) {
+        TemplateResolver tr = new TemplateResolver();
+        tr.setResourceResolver(new BundleResourcesResolver(bundle));
+        tr.setOrder(order);
+        tr.setPrefix(TEMPLATES_FOLDER);
+        tr.setSuffix(TEMPLATES_ENDING);
+        return tr;
+    }
 
     private AbstractContext context() {
         return (AbstractContext) request.getAttribute(ATTR_CONTEXT);
