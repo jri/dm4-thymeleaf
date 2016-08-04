@@ -17,7 +17,7 @@ Thymeleaf template engine:
 Version History
 ---------------
 
-**0.6** -- Upcoming
+**0.6** -- Aug 04, 2016
 
 * Support for setting up many `BundleResourceResolvers`
 * Resolve included th:fragments by their template name only
