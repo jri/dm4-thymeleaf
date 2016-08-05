@@ -17,6 +17,10 @@ Thymeleaf template engine:
 Version History
 ---------------
 
+**0.6.1** -- Aug 05,2016
+
+* Makes overriding template by filename across many bundle resource resolvers work as expected again
+
 **0.6** -- Aug 04, 2016
 
 * Support for setting up many `BundleResourceResolvers`
