@@ -99,18 +99,21 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
     protected void initTemplateEngine() {
         templateEngine = new TemplateEngine();
         // 1) if configured set additional BundleResourceResolver we register them 1st, giving their resources priority
+        int order = 1;
         if (additionalTemplateResourceBundles.size() > 0) {
             logger.info("Initializing Thymeleaf TemplateEngine with additional template resolver bundles...");
             for (Bundle otherTemplateResourceBundle : additionalTemplateResourceBundles) {
-                TemplateResolver otherTemplateResolver = createBundleResourcesResolver(otherTemplateResourceBundle);
+                TemplateResolver otherTemplateResolver = createBundleResourcesResolver(otherTemplateResourceBundle, order);
                 templateEngine.addTemplateResolver(otherTemplateResolver);
                 logger.info("Added template resolver bundle \"" + otherTemplateResourceBundle.getSymbolicName() + "\"");
+                order++;
             }
         } else {
-            logger.info("Initializing Thymeleaf TemplateEngine without any additional template resolver bundles...");
+            logger.info("Initializing Thymeleaf TemplateEngine for \""+bundle.getSymbolicName()+"\" without "
+                + "any additional template resolver bundles...");
         }
         // 2) initialize the "this" plugin (the one extending this class) as a BundleResourceResolver too
-        templateEngine.addTemplateResolver(createBundleResourcesResolver(bundle));
+        templateEngine.addTemplateResolver(createBundleResourcesResolver(bundle, order));
     }
 
     protected void viewData(String name, Object value) {
@@ -123,9 +126,10 @@ public class ThymeleafPlugin extends PluginActivator implements ServiceRequestFi
 
     // ------------------------------------------------------------------------------------------------- Private Methods
 
-    private TemplateResolver createBundleResourcesResolver(Bundle bundle) {
+    private TemplateResolver createBundleResourcesResolver(Bundle bundle, int order) {
         TemplateResolver tr = new TemplateResolver();
         tr.setResourceResolver(new BundleResourcesResolver(bundle));
+        tr.setOrder(order);
         tr.setPrefix(TEMPLATES_FOLDER);
         tr.setSuffix(TEMPLATES_ENDING);
         return tr;
